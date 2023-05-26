@@ -23,7 +23,8 @@ public class StudentService {
         return studentRepository.getStudentByID(id);
     }
 
-    public void addStudent(Student student){
+    public Student addStudent(Student student){
         studentRepository.addStudent(student);
+        return student;
     }
 }

@@ -2,9 +2,7 @@ package de.iav.mycoolspringapp.controller.controller;
 
 import de.iav.mycoolspringapp.controller.model.Student;
 import de.iav.mycoolspringapp.controller.service.StudentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,7 +12,8 @@ public class StudentController {
 
     private final StudentService studentService;
 
-    public StudentController(StudentService studentService) {
+
+    public StudentController( StudentService studentService) {
         this.studentService = studentService;
     }
 
@@ -22,5 +21,15 @@ public class StudentController {
 
     public List<Student> getAllStudents(){
         return studentService.getAllStudents();
+    }
+
+    @PostMapping
+    public void addStudent(@RequestBody Student studentToAdd) {
+        studentService.addStudent(studentToAdd);
+    }
+
+    @GetMapping("/{id}")
+    public Student getStudentByID(@PathVariable String id){
+        return studentService.getStudentByID(id);
     }
 }
